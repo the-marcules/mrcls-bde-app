@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="Author" content="mrcls">
+        <title>websocket playground</title>
+        <link rel="stylesheet" href="./style/style.css"></link>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="chartScripts.js"></script>
+        <script src="drag.js"></script>
+        <script src="andon.js"></script>
+        <script src="client.js"></script>
+        <script>
+           // TODO: Checkout Google Charts & JS SVG
+        </script>
+        
+    </head>
+    <body>
+        <div id="flexbox">
+        </div><div id="header"> <!-- HEADER -->
+            <p class="title">BDE / MDE</p>
+        </div>
+        <div id="content"> <!-- CONTENT -->
+            <div class="main">
+                
+                <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: 370px">
+                    <h1 class="gradient_2">Media consumption Engine Line 1</h1>
+                    <div class="canvas_boundary_box" style="display: block; width: 480px; height: 300px"><canvas id="myChartOne" width="500px" height="300px"></canvas></div>
+                    
+                </div>
+
+
+                <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: 370px">
+                    <h1 class="gradient_2">Cycle time Engine Line 1</h1>
+                    <div class="canvas_boundary_box" style="display: block; width: 480px; height: 300px"><canvas id="myChartThree" width="500px" height="300px"></canvas></div>
+                    
+                </div>
+
+                <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: 500px">
+                    <h1 class="gradient_2">Tool temperatures</h1>
+                    <div class="canvas_boundary_box" style="display: block; width: 450px; height: 400px"><canvas id="myChartTwo" width="450px" height="400px"></canvas></div>
+                    
+                </div>
+
+                <div class="background_3 roundBox" style="display: block; width: 1100px; height: 500px">
+                    <h1 class="gradient_2">ANDON Line 1</h1>
+                    <div class="" style="display: block; width: 450px; height: 400px">
+                        <svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" id="master" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="20%" y2="100%">
+                              <stop offset="0%" style="stop-color:rgb(18, 173, 13);stop-opacity:0" />
+                              <stop offset="100%" style="stop-color:rgb(18, 173, 13);stop-opacity:0.5" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgb(241, 217, 0);stop-opacity:0" />
+                                <stop offset="100%" style="stop-color:rgb(241, 217, 0);stop-opacity:0.5" />
+                              </linearGradient>
+                              <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgb(168, 14, 3);stop-opacity:0" />
+                                <stop offset="100%" style="stop-color:rgb(168, 14, 3);stop-opacity:0.5" />
+                              </linearGradient>
+                            </defs>
+                          
+                            <path stroke="lightgrey" style="stroke-width: 7" fill-opacity="0";
+                            d="M10 10 H900 C950 10, 950 50, 950 50 V150 C950 200, 900 200, 900 200 H10 ">
+                            </path>
+
+                         <!--    <circle x="10" y="10" r="5" fill="rgb(200,0,0)" fill-opacity="0" stroke="rgb(200,0,0)" stroke-width="2">
+                                <animateMotion dur="10s" repeatCount="indefinite" path="M10 10 H900 C950 10, 950 50, 950 50 V150 C950 200, 900 200, 900 200 H10 "></animateMotion>
+                            </circle> -->
+
+
+                            <rect x="800" y="300" width="70" height="30" fill="rgb(0,0,0)" fill-opacity="0.3" stroke="rgb(0,0,0)" stroke-width="1" id="time-background"/> 
+                            <text x="805" y="320" width="70" height="30" fill="rgb(255,255,255)" fill-opacity="0.7" id="time">12:59:59</text>
+                          
+                             <rect x="40" y="14" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3" stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_8" draggable="true" ondragstart="drag(event)"/>
+                             <rect x="240" y="14" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_1"/>
+                             <rect x="440" y="14" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_2"/>
+                             <rect x="640" y="14" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_3"/>
+                             
+                             <rect x="40" y="204" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_7"/>
+                             <rect x="240" y="204" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_6"/>
+                             <rect x="440" y="204" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_5"/>
+                             <rect x="640" y="204" width="150" height="70" fill="rgb(0,0,0)" fill-opacity="0.3"  stroke="rgb(0,0,0)" stroke-width="1" id="line_1_machine_4"/>
+        
+                         
+                          
+                          
+                        </svg>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <aside class="sidebar">
+                <h2>Menu</h2>
+                <ul style="list-style-type: none;">
+                    <li>
+                        <a href="#" onclick="closeWebSocket()">Websocket beenden</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFlowChartWS.zoom()">SVG Zoom</a>
+                    </li>
+                </ul>
+               
+                
+            </aside>
+        </div>
+        <div id="footer">Footer</div> <!-- FOOTER -->
+    </div>
+        
+    </body>
+</html>

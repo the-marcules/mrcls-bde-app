@@ -1,0 +1,221 @@
+/*style https://openbase.io/js/d3 */
+/*Backgrounds*/
+.background_black {
+    background-color: rgb(0,0,0);;
+}
+.background_0{ /*search field*/
+    background-color: rgb(12, 15,22);
+}
+.background_1 { /*page background , deepest level */
+    background-color: rgb(18,22,32);
+}
+.background_2 {
+    background-color: rgb( 28,	34,	46	);
+}
+.background_3 {
+    background-color: rgb(32,	39,	52	);
+}
+.background_4 {
+    background-color: rgb(36,	47,	67	);
+}
+.background_4:hover{
+    background-color: rgb(48,64,96);
+}
+.backgorund_5 { /* e.g. weak button or info */
+    background-color: rgb(26,	30,	40	);
+}
+.background_6 { /* footer*/
+    background-color: rgb(9,	10,	12	);
+}
+
+.background_highlight_1 {
+    background-color:rgb(101,	228	,224	); 
+}
+
+/*text colors
+text_0 is normal text, but also top menu level link.
+*/
+.text_0 {
+    color: rgb(140,	160,	197	);
+}
+.text_0:active {
+    color: rgb(219,	231,	253	);
+}
+.text_0:hover {
+    color: rgb(101,	228	,224	); /*text_hightlight_1*/
+}
+.text_1{
+    color: rgb(193,	204	,226	);
+}
+.text_highlight_1 {
+    color: rgb(101,	228	,224	);
+}
+.text_highlight_2 {
+    color: rgb(240,	171,	59		);
+}
+
+.text_weak { /*search field, line color of separator horizontal line*/
+    color: rgb(74,	94	,132	);
+}
+.text_green {
+    color: rgb(101,	228,	78	);
+}
+.text_red {
+    color: rgb(229,	60,	67	);
+}
+
+.text_link_inText {
+    color: rgb(67,	154	,248	);
+}
+.text_link_inText:hover {
+    color: rgb(107,187,250);
+    text-decoration: underline;
+}
+
+/*gradients of page, box or paragraph headings */
+.gradient_1 { /* paragraph heading */
+   
+    background-image: linear-gradient(to right, rgba(45,73,	94,0.7) 0%,rgba(36,	47,	67,0.3) 40% );
+}
+.gradient_2 { /* heading*/
+   /* background-color: rgb(38,	62,	76	); highlight color */
+    background-color: rgb(28,	34,	46	); /* also background 2 */
+    background-image: linear-gradient(to right,rgba(38,	62,	76,0.7) 0%, rgba(28,	34,	46, 1) 40%);
+}
+
+.gradient_3 {
+    background-color: rgb(56,	110,	116	);
+    /* gradients to full transparency*/
+    border-color: rgb(101,	228,	224	); /* in a line graph this would be the line, followed by the gradient towards x-axis; same color as text_highlight_1*/
+}
+
+
+/*lines, borders, separators*/
+.border_1 { /* normal border */
+    border-color: rgb(140,	160,	197	); /* text_1*/
+}
+.border_2 { /* weaker border */
+    border-color: rgb(45,	56,	81	);
+}
+
+.separator_1 { /* weak separation */
+    border-color: rgb(54,	60,	74	);
+}
+
+.separator_2 { /* stronger separation */
+    border-color: rgb(74,	94	,132	);
+}
+
+.roundBox {
+    border-radius: 5px;
+}
+.roundBox h1 {
+    margin-top: 0px;
+}
+
+.tooltip {
+    border-radius: 5px;
+    background-color: rgba(12, 15,22, 0.8);
+    border: 1px solid  rgb(0, 0, 0);
+    color: #FFF;
+    padding: 0px;
+    min-width: 300px;
+    z-index: 9999;
+}
+.tooltip h3 {
+    font-weight: 500;
+    color: #FFF;
+    font-size: 1.1em;
+    margin: 0px;
+    padding: 3px;
+    border-radius: inherit;
+}
+.tooltip div.tt_content {
+    font-weight: 100;
+    padding: 5px;
+
+}
+
+/*
+    Fix Tag definitions: 
+*/
+
+body {
+    background-color: rgb(18,22,32); /*background_1*/
+    color: rgb(140,	160, 197);/*text_1*/
+    margin: 0px;
+    padding: 0px;
+    font-family: "Segoe UI";
+}
+
+h1 {
+    padding: 4px;
+    border-radius: 3px;
+    margin: 20px 0px;
+    font-weight: 50;
+    font-size: 2em;
+    font-family: "Segoe UI Light","VWAG TheSans Light";
+}
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(140,	160, 197);/*text_1*/ 
+}
+a:hover {
+    color: rgb(255,	255, 255);/*text_1*/ 
+}
+
+/*
+    FIX ID definitions
+*/
+
+#header {
+    background-color: rgb( 28,	34,	46	);
+    box-shadow: 0px 3px 10px #111;
+    margin: 0px;
+    padding: 5px;
+    display: flex;
+    height: 90px;
+    width: 100%;
+    position: sticky;
+
+}
+
+#header .title{
+    font-size: 2em;
+    color: aliceblue;
+}
+#content {
+    margin: 0px;
+    border-radius: 3px;
+    display: flex;
+    min-height: 400px;
+}
+
+.main {
+    flex: 4;
+    order: 2;
+}
+.sidebar {
+    flex: 1;	
+    order: 1;
+    background-color: rgb(32,	39,	52	);
+    padding: 20px 5px;
+}
+
+
+div#content div {
+    margin: 15px;
+}
+
+#footer{
+    width: 100%;
+    display: flex;
+    position: relative;
+    min-height: 223px;
+    bottom: 0px;
+    background-color: rgb(4, 6, 9);
+    padding: 20px;
+    color: #FFF;
+}
