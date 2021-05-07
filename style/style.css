@@ -108,6 +108,7 @@ text_0 is normal text, but also top menu level link.
 
 .roundBox {
     border-radius: 5px;
+    margin:5px;
 }
 .roundBox h1 {
     margin-top: 0px;
@@ -169,13 +170,15 @@ a:hover {
 /*
     FIX ID definitions
 */
+* {
+    box-sizing:border-box;
+  }
 
 #header {
     background-color: rgb( 28,	34,	46	);
     box-shadow: 0px 3px 10px #111;
     margin: 0px;
     padding: 5px;
-    display: flex;
     height: 90px;
     width: 100%;
     position: sticky;
@@ -189,29 +192,28 @@ a:hover {
 #content {
     margin: 0px;
     border-radius: 3px;
-    display: flex;
     min-height: 400px;
 }
-
+ 
 .main {
-    flex: 4;
-    order: 2;
+    float: left;
+    width: 80%;
+    margin:0px;
+    padding-top: 5px;
 }
 .sidebar {
-    flex: 1;	
-    order: 1;
     background-color: rgb(32,	39,	52	);
-    padding: 20px 5px;
+    padding: 5px;
+    float:left;
+    width: 20%;
+    margin:0px;
+    height: 100%;
 }
 
-
-div#content div {
-    margin: 15px;
-}
 
 #footer{
     width: 100%;
-    display: flex;
+    clear: left;
     position: relative;
     min-height: 223px;
     bottom: 0px;
@@ -219,3 +221,13 @@ div#content div {
     padding: 20px;
     color: #FFF;
 }
+
+@media screen and (max-width:800px) {
+    .sidebar, .main {
+      width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+    .sidebar {
+        box-shadow: 0px 3px 10px #111;
+        height: auto;
+    }
+  }

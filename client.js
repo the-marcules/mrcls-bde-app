@@ -109,13 +109,25 @@ window.onload = function app() {
         backgroundColor: 'rgba(54, 162, 235,0.2)',
         borderColor: 'rgb(54, 162, 235)',
         borderWidth:1,
+        fill: 'origin',
         data: [100,80,50,70,30,10,60]
       },{
-        label: 'Limit',
-        backgroundColor: 'rgba(255, 0, 0,0)',
-        borderColor: 'rgba(255, 0, 0,0.3)',
+        label: 'Warning',
+        backgroundColor: 'rgba(255, 217, 0, 0.1)',
+        borderColor: 'rgba(255, 217, 0, 0.2)',
         pointBorderColor: 'rgba(0,0,0,0)',
         borderWidth:1,
+        pointBackgroundColor: 'rgba(0,0,0,0)',
+        fill: '+1', // only works if 'fill' is specified for all datasets.
+        data: [70,70,70,70,70,70,70]
+      },{
+        label: 'Danger Zone',
+        backgroundColor: 'rgba(255, 0, 0,0.1)',
+        borderColor: 'rgba(255, 0, 0,0.2)',
+        pointBorderColor: 'rgba(0,0,0,0)',
+        borderWidth:1,
+        pointBackgroundColor: 'rgba(0,0,0,0)',
+        fill: 'end', // only works if 'fill' is specified for all datasets.
         data: [85,85,85,85,85,85,85]
       }
     ]
@@ -145,15 +157,17 @@ window.onload = function app() {
             backgroundColor: 'rgba(13, 175, 24, 0.2)',
             borderColor: 'rgb(13, 175, 24)',
             borderWidth:1,
-            
+            fill: 'start',
             data: []
         },
         {
             label: 'Limit',
-            backgroundColor: 'rgba(2, 175, 24, 0)',
-            borderColor: 'rgba(255, 0, 0,0.3)',
+            backgroundColor: 'rgba(255, 0, 0,0.1)',
+            borderColor: 'rgba(255, 0, 0,0.2)',
             borderWidth:1,
             pointBorderColor: 'rgba(0,0,0,0)',
+            pointBackgroundColor: 'rgba(0,0,0,0)',
+            fill: 'end',
             data: [13,13,13,13,13,13,13,13,13,13]
         }
     ]
@@ -174,25 +188,27 @@ window.onload = function app() {
     }
   };
 
-   myChart = new mrclsLiveChart("myChartOne",{host: "ws://localhost", port: 8080});
+  wsPort = 8087;
+
+   myChart = new mrclsLiveChart("myChartOne",{host: "ws://localhost", port: wsPort});
    myChart.initChart(chartParams);
    myChart.initWebSocketCommunication(message);
  
 
 
   // 2nd Chart
-  myChartTwo = new mrclsLiveChart("myChartTwo",{host: "ws://localhost", port: 8080});
+  myChartTwo = new mrclsLiveChart("myChartTwo",{host: "ws://localhost", port: wsPort});
   myChartTwo.initChart(chartParams2);
   myChartTwo.initWebSocketCommunication(message2);
 
   // 3rd Chart
-  myChartThree = new mrclsLiveChart("myChartThree",{host: "ws://localhost", port: 8080});
+  myChartThree = new mrclsLiveChart("myChartThree",{host: "ws://localhost", port: wsPort});
   myChartThree.initChart(chartParams3);
   myChartThree.initWebSocketCommunication(message3);
   
 
   // flussdiragramm
-  myFlowChartWS = new Andon(message_MZ, "ws://localhost:8080", "master");  
+  myFlowChartWS = new Andon(message_MZ, "ws://localhost:"+wsPort, "master");  
 
 
 }

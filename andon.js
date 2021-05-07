@@ -1,8 +1,9 @@
 class Andon {
     constructor(msg, host, svgID) {
         // @Public
-        let enableSound = false;
+       
         // @Private
+        let enableSound = false;
         const maschienenZustaende = [
             {
                 value: 1,
@@ -125,7 +126,7 @@ class Andon {
                 description: ""
             }
         ];
-        let ws, svg;
+        let ws, svg, svgNS;
         let maschienen = [];
         let aktuelleZustaende = [];
         let defaults = {
@@ -186,6 +187,7 @@ class Andon {
 
         function initSVG(svgId)  {
             svg = document.getElementById(svgId);
+            svgNS = svg.getAttribute("xmlns");
             setzeEventListener();
             addNameToMachine();
             storeDefaults();
@@ -233,11 +235,16 @@ class Andon {
                     document.getElementById(msg.labels[i]+"_zustand").innerHTML = zustand.title;
 
                 }
-
+                drawLegend();
                 if(sound) playSound();
             } catch(e) {
                 console.log("Fehler: " + e);
             }
+        }
+
+        function drawLegend() {
+            console.log("aktuelle Zustände", aktuelleZustaende);
+
         }
 
         function getMaschienenZustand(zustand) {
@@ -343,8 +350,8 @@ class Andon {
 
         function clock() {
             let zeit = new Date();
-
-            document.getElementById("time").textContent = (zeit.getHours()<10?"0"+zeit.getHours():zeit.getHours())+":"+(zeit.getMinutes()<10?"0"+zeit.getMinutes():zeit.getMinutes())+":"+(zeit.getSeconds()<10?"0"+zeit.getSeconds():zeit.getSeconds());
+            let zeitElement =  document.getElementById("time");
+            if(zeitElement) zeitElement.textContent = (zeit.getHours()<10?"0"+zeit.getHours():zeit.getHours())+":"+(zeit.getMinutes()<10?"0"+zeit.getMinutes():zeit.getMinutes())+":"+(zeit.getSeconds()<10?"0"+zeit.getSeconds():zeit.getSeconds());
         }
 
         this.zoom = () => {
@@ -352,8 +359,8 @@ class Andon {
                 //console.log("Fesnter :" +window.innerHeight);
                 svg.setAttribute("width",window.innerWidth );
                 svg.setAttribute("height",window.innerHeight);
-                svg.setAttribute("viewBox","0 0 " + window.innerWidth*0.55 + " " +window.innerHeight*0.7)
-                svg.parentNode.setAttribute("style", "position: absolute; top:0px; left:0px; display: block; width: 100%; height: 100%; z-index: 9997; background-color:  rgb(18,22,32);");
+                //svg.setAttribute("viewBox","0 0 " + window.innerWidth*0.6 + " " +window.innerHeight*0.7)
+                svg.parentNode.setAttribute("style", "position: absolute; top:0px; left:0px; display: block; width: 100%; height: 100%; z-index: 9997; background-color:  rgb(18,22,32); margin: 0px; padding: 0px;");
                 let closeBtn = document.createElement("a");
                 closeBtn.onclick = this.zoom;
                 closeBtn.setAttribute("id","closeBtn");

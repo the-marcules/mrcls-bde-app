@@ -2,9 +2,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="Author" content="mrcls">
+        <meta name="keywords" lang="de" content="BDE, SCADA, EDE">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>websocket playground</title>
         <link rel="stylesheet" href="./style/style.css"></link>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <link rel="stylesheet" href="./style/Chart.css"></link>
+        <script src="Chart.bundle.js"></script>
         <script src="chartScripts.js"></script>
         <script src="drag.js"></script>
         <script src="andon.js"></script>
@@ -15,11 +18,22 @@
         
     </head>
     <body>
-        <div id="flexbox">
         </div><div id="header"> <!-- HEADER -->
             <p class="title">BDE / MDE</p>
         </div>
         <div id="content"> <!-- CONTENT -->
+            <div class="sidebar">
+                <h2>Menu</h2>
+                <ul style="list-style-type: none;">
+                    <li>
+                        <a href="#" onclick="closeWebSocket()">Websocket beenden</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="myFlowChartWS.zoom()">SVG Zoom</a>
+                    </li>
+                </ul>
+            </div>
+
             <div class="main">
                 
                 <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: 370px">
@@ -35,16 +49,16 @@
                     
                 </div>
 
-                <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: 500px">
+                <div class="background_3 roundBox" style="display: inline-block; width: 500px; height: auto">
                     <h1 class="gradient_2">Tool temperatures</h1>
                     <div class="canvas_boundary_box" style="display: block; width: 450px; height: 400px"><canvas id="myChartTwo" width="450px" height="400px"></canvas></div>
                     
                 </div>
 
-                <div class="background_3 roundBox" style="display: block; width: 1100px; height: 500px">
+                <div class="background_3 roundBox" style="display: block; width: 100%; height: 500px">
                     <h1 class="gradient_2">ANDON Line 1</h1>
-                    <div class="" style="display: block; width: 450px; height: 400px">
-                        <svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" id="master" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <div class="" style="display: block; width: inherit; height: inherit; margin: 0px; padding: 0px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" id="master" width="1000" height="600">
                             <defs>
                             <linearGradient id="grad1" x1="0%" y1="0%" x2="20%" y2="100%">
                               <stop offset="0%" style="stop-color:rgb(18, 173, 13);stop-opacity:0" />
@@ -90,23 +104,10 @@
                     
                 </div>
 
-            </div>
-            <aside class="sidebar">
-                <h2>Menu</h2>
-                <ul style="list-style-type: none;">
-                    <li>
-                        <a href="#" onclick="closeWebSocket()">Websocket beenden</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="myFlowChartWS.zoom()">SVG Zoom</a>
-                    </li>
-                </ul>
-               
-                
-            </aside>
-        </div>
+            </div> <!-- main ende -->
+           
+        </div> <!-- content ende -->
         <div id="footer">Footer</div> <!-- FOOTER -->
-    </div>
         
     </body>
 </html>

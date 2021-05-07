@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const port = 8080;
+const port = 8087;
 let sockets = []; // 'id': {ws: websocket, requestMst: message, loop: setInterval}
 
 
@@ -171,10 +171,24 @@ wss.on('connection', function connection(ws) {
 
             return newZustand;
         }
-        
-        flow = setInterval(()=>{
+        function generateMachineMetaData(machine) {
+
+            return {
+                "taktzeit": getRandomIntInclusive(40, 60),
+                "gesamt-stueckzahl":  getRandomIntInclusive(1, 850),
+                "soll-aktuell": getRandomIntInclusive(380, 550),
+                "nio": getRandomIntInclusive(0, 5),
+                "oee": getRandomIntInclusive(95, 100),
+                "aktueller-typ": "Typ-"+ getRandomIntInclusive(1,3),
+                machine
+            }
+
+        }
+
+
+        function streamData(){
             let datum = getFormatedTime();
-            let result = {labels:[], data:[]};
+            let result = {labels:[], data:[], meta:[]};
             //console.log(request);
 
             switch ( request.dataType.source ) {
@@ -207,6 +221,7 @@ wss.on('connection', function connection(ws) {
                                 //console.log("NOT Changed");
 
                             }
+                            result.meta.push(generateMachineMetaData(request.dataType.machines[i]))
                         }
                    
                     break;
@@ -214,10 +229,13 @@ wss.on('connection', function connection(ws) {
 
             ws.send(JSON.stringify(result), ()=>{
                 //callback
-                //console.log(getFormatedTime() + " send Data: "+ JSON.stringify(result));
+                console.log(getFormatedTime() + " send.");
             });
 
-        },updateInterval); // ! interval
+        }// streamDATA
+        streamData();
+
+        flow = setInterval(streamData,updateInterval); // ! interval
 
     }); // ! on.message
 
