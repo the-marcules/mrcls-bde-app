@@ -174,7 +174,7 @@ wss.on('connection', function connection(ws) {
         function generateMachineMetaData(machine) {
 
             return {
-                "taktzeit": getRandomIntInclusive(40, 60),
+                "taktzeit": getRandomIntInclusive(40, 59),
                 "gesamt-stueckzahl":  getRandomIntInclusive(1, 850),
                 "soll-aktuell": getRandomIntInclusive(380, 550),
                 "nio": getRandomIntInclusive(0, 5),
@@ -209,13 +209,19 @@ wss.on('connection', function connection(ws) {
                 case "randomMaschZu": // Maschinenzustände
                    
                         for(i=0; i<request.dataType.machines.length; i++) {
-                            if(getRandomIntInclusive(1,3) == 1) { // 33% Chance den wert zu ändern.
+                            if(lastMachineState[i] == 1 && getRandomIntInclusive(1,6) == 1) { // Chance den wert zu ändern wenn grün.
                                 let zustand = getMaschZustand(i);
                                 result.labels.push(request.dataType.machines[i]);
                                 result.data.push(zustand);
                                 lastMachineState[i] = zustand;  
                                 //console.log("Changed");
-                            } else {
+                            } else if( lastMachineState[i] != 1) {
+                                let zustand = getMaschZustand(i);
+                                result.labels.push(request.dataType.machines[i]);
+                                result.data.push(zustand);
+                                lastMachineState[i] = zustand;  
+                        
+                            }else {
                                 result.data.push(lastMachineState[i]);
                                 result.labels.push(request.dataType.machines[i]); 
                                 //console.log("NOT Changed");
